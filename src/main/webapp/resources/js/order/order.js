@@ -31,6 +31,7 @@ $(function() {
   function connect() {
     var socket = new SockJS(contextPath + '/spring-websocket');
     stompClient = Stomp.over(socket);
+    stompClient.debug = null;
     stompClient.connect({}, function(frame) {
       stompClient.subscribe('/adminNotification', function(orderNotification) {
         alert(JSON.parse(orderNotification.body).notifictionMessage);

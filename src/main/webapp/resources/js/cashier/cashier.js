@@ -33,6 +33,7 @@ $(function() {
   function connect(customer) {
     var socket = new SockJS(contextPath + '/spring-websocket');
     stompClient = Stomp.over(socket);
+    stompClient.debug = null;
     stompClient.connect({}, function(frame) {
       if (socket.readyState === 1) {
         sendName(customer);

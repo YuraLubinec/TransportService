@@ -13,7 +13,7 @@
 
   <div class="col-md-12">
 
-    <c:if test="${param.id == null}">
+    <c:if test="${param.message != true}">
       <div class="row">
         <h2>Для реєстрації замовлення заповніть дану форму</h2>
       </div>
@@ -138,7 +138,7 @@
                       <c:out value="${workType.name}"></c:out>
                     </td>
                     <td>
-                      <c:out value="${workType.price}.грн"> </c:out>
+                      <c:out value="${workType.price}. грн"> </c:out>
                     </td>
                     <td>
                       <c:out value="${workType.time/60} год."> </c:out>
@@ -152,7 +152,7 @@
       </div>
     </c:if>
 
-    <c:if test="${param.id != null}">
+    <c:if test="${param.message == true}">
 
       <div class="row">
         <div class="alert alert-success col-md-4 col-md-offset-4">
@@ -170,6 +170,7 @@
   </div>
 </div>
 
+<input id="message" type="hidden" value="${param.message}" />
 <input id="contextPath" type="hidden" value="${pageContext.request.contextPath}" />
 
 <!-- Main js -->

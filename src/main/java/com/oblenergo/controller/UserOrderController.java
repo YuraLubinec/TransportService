@@ -37,6 +37,8 @@ public class UserOrderController {
   private static final String ITEMSCAR = "cars";
   private static final String ORDER = "orders";
 
+  private static final String SHOW_MESSAGE = "message";
+
   @Autowired
   private OrderService orderServiceImpl;
 
@@ -83,7 +85,7 @@ public class UserOrderController {
       model.addAttribute(ITEMSCAR, carServiceImpl.findAll());
       return "createOrder";
     }
-    
+
     orders.setCustomer(sapServiceImpl.getFullNameFromSap(orders.getUser_tab()));
     WorkTypeDTO wtDTO = wokrTypeServiceImpl.getWorkTypeDTOByIdFromSAP(orders.getWorkType().getId());
     String all_sum = wtDTO.getPrice();
@@ -92,10 +94,9 @@ public class UserOrderController {
     all_sum = Double.toString(all_sumWithPDV);
     orders.setAll_sum(all_sum);
     orderServiceImpl.save(orders);
-
-    return "redirect:/?id=" + orders.getId();
+    return "redirect:/?message=" + true;
   }
-  
+
   @MessageMapping("/newOrderNotification")
   @SendTo("/adminNotification")
   public Notification greeting(OrderMessage orderMessage) {

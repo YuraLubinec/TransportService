@@ -115,16 +115,17 @@ input.error, textarea.error{
  color: #a94442;
  font-weight: bold;
 }
+
 .option-center{
 
 	text-indent: 4px;
 }
+
 .bold-padding{
 	padding-top:5px;
 	padding-left:4px;
 	font-weight: bold;
 }
-
 	
 select{
     -webkit-appearance: none;
