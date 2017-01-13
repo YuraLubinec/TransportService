@@ -23,7 +23,7 @@ public class DatabaseConfiguration {
   @Autowired
   private Environment environment;
 
-  @Bean(name = "dataSource")
+  @Bean
   BasicDataSource dataSource() {
 
     BasicDataSource dataSource = new BasicDataSource();
@@ -31,6 +31,7 @@ public class DatabaseConfiguration {
     dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
     dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
     dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+    dataSource.setDefaultAutoCommit(false);
     return dataSource;
   }
 
@@ -42,7 +43,7 @@ public class DatabaseConfiguration {
     return properties;
   }
 
-  @Bean(name = "sessionFactory")
+  @Bean
   public SessionFactory sessionFactory() {
 
     LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());

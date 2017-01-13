@@ -2,6 +2,8 @@ package com.oblenergo.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,8 @@ import com.oblenergo.DTO.WorkTypeDTO;
 import com.oblenergo.editor.CarEditor;
 import com.oblenergo.editor.ServiceEditor;
 import com.oblenergo.model.Car;
+import com.oblenergo.model.Notification;
+import com.oblenergo.model.OrderMessage;
 import com.oblenergo.model.Orders;
 import com.oblenergo.model.WorkType;
 import com.oblenergo.service.CarService;
@@ -90,5 +94,12 @@ public class UserOrderController {
     orderServiceImpl.save(orders);
 
     return "redirect:/?id=" + orders.getId();
+  }
+  
+  @MessageMapping("/newOrderNotification")
+  @SendTo("/adminNotification")
+  public Notification greeting(OrderMessage orderMessage) {
+
+    return new Notification(orderMessage.getMessage());
   }
 }

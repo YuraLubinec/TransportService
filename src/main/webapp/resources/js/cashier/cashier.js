@@ -3,7 +3,7 @@ $(function() {
   var contextPath = $('#contextPath').val();
 
   //add style to data table 
-  $(document).ready(function() {
+
     $('#orders').DataTable({
 
       language: {
@@ -27,7 +27,7 @@ $(function() {
       bLengthChange: false,
       info: false,
     });
-  });
+
 
   // Create web socket connection to the server, invoke sendName and disconnect functions
   function connect(customer) {
@@ -51,7 +51,7 @@ $(function() {
   //Sent message to the server about new order confirmation
   function sendName(customer) {
     stompClient.send("/app/paymentAproveNotification", {}, JSON.stringify({
-      'message': 'Нове замовлення від '+customer
+      'message': 'Замовлення від '+customer+' оплачено'
     }));
   }
 

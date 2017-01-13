@@ -163,7 +163,6 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-4">
           <a href=<c:url value="/" /> class="btn btn-success">Повернутися</a>
-
         </div>
       </div>
 
@@ -172,6 +171,9 @@
 </div>
 
 <input id="contextPath" type="hidden" value="${pageContext.request.contextPath}" />
+
+<!-- Main js -->
+<script src=<c:url value="/resources/js/user/user.js" />></script>
 
 <!-- Nouislider library -->
 <script src=<c:url value="/resources/js/dateTimePicker/nouislider.min.js" />></script> 

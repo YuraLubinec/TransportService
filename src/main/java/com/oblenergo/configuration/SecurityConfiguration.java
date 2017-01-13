@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
-    http.authorizeRequests().antMatchers("/", "/login", "/selectTime", "/pdf/**").permitAll()
+    http.authorizeRequests().antMatchers("/", "/login", "/selectTime", "/pdf/**", "/spring-websocket/**").permitAll()
         .antMatchers("/admin/**", "/order").access("hasAuthority('ADMIN')").antMatchers("/cashier/**")
         .access("hasAuthority('CASHIER')").antMatchers("/**").access("isAuthenticated()").and().formLogin()
         .loginPage("/login").loginProcessingUrl("/loginCheck").usernameParameter("username")
