@@ -17,7 +17,7 @@ $(function() {
 	      },
 	      order: [1, 'asc'],
 	      columnDefs: [{
-	        targets: [2, 3, 4, 6, 8, 9, 10],
+	        targets: [2, 3, 4, 6, 8, 10, 11],
 	        orderable: false,
 	      }, {
 	        targets: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -35,6 +35,7 @@ $(function() {
     stompClient.connect({}, function(frame) {
       stompClient.subscribe('/adminNotification', function(orderNotification) {
         alert(JSON.parse(orderNotification.body).notifictionMessage);
+        document.location.href = contextPath + '/admin/order';
       });
     });
   }

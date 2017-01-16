@@ -6,7 +6,6 @@ $(function() {
   //sends notification about new order to admin
   if (show_mes){
     connect('some message');
-    $('message').val(false);
   }
   
   //Create web socket connection to the server, invoke sendName and disconnect functions
