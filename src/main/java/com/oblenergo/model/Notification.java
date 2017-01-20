@@ -2,19 +2,19 @@ package com.oblenergo.model;
 
 public class Notification {
 
-  private String notifictionMessage;
+  private String notificationMessage;
 
-  public String getNotifictionMessage() {
+  public String getNotificationMessage() {
    
-    return notifictionMessage;
+    return notificationMessage;
   }
 
   public Notification() {
   }
 
-  public Notification(String notifictionMessage) {
+  public Notification(String notificationMessage) {
    
-    this.notifictionMessage = notifictionMessage;
+    this.notificationMessage = notificationMessage;
   }
 
 }

@@ -3,6 +3,7 @@ $(function() {
   var stompClient = null;
   
   connect();
+  Notification.requestPermission();
 
   $(document).ready(function() {
 	    $('#orders').DataTable({
@@ -34,7 +35,7 @@ $(function() {
     stompClient.debug = null;
     stompClient.connect({}, function(frame) {
       stompClient.subscribe('/adminNotification', function(orderNotification) {
-        alert(JSON.parse(orderNotification.body).notifictionMessage);
+        notifyMe(JSON.parse(orderNotification.body).notificationMessage);
         document.location.href = contextPath + '/admin/order';
       });
     });
@@ -57,9 +58,25 @@ $(function() {
     	  id.closest('tr').remove();
       },
       error: function(jqXHR) {
-        alert('Smth wrong... code: ' + jqXHR.status);
+        alert('Щось пішло не таке... code: ' + jqXHR.status);
       },
     });
   };
   
+  //send notification for administrator to a work table 
+  function notifyMe(notificationMessage) {
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    }
+    else if (Notification.permission === "granted") {
+      var notification = new Notification("ЗВЕРНІТЬ УВАГУ!", {body:notificationMessage});
+    }
+    else if (Notification.permission !== 'denied') {
+      Notification.requestPermission(function (permission) {
+        if (permission === "granted") {
+          var notification = new Notification(notificationMessage);
+        }
+      });
+    }
+  }
 });
