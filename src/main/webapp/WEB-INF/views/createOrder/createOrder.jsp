@@ -83,6 +83,10 @@
             placeholder="+38011111111" cssErrorClass="error form-control" />
           <form:errors path="mobile_phone_number" class="help-block with-errors" cssErrorClass="" />
 
+          <label>Якщо у вас немає email адреси, вкажіть будь ласка адресу, на яку має прийти сповіщення про підтвердження замовлення</label>
+          <form:input id="second_email" required="required" path="second_email" class="form-control orderInput" cssErrorClass="error form-control"/>
+          <form:errors path="second_email" class="help-block with-errors" cssErrorClass="" />
+
           <br>
 
           <label> Виберіть період надання послуги</label>

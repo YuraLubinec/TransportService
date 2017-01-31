@@ -1,27 +1,16 @@
 package com.oblenergo.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
+import com.oblenergo.enums.StatusOrderEnum;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.oblenergo.enums.StatusOrderEnum;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "orders")
@@ -45,6 +34,7 @@ public class Orders implements Serializable {
   private String all_sum;
   private String bill_number;
   private StatusOrderEnum status_order = StatusOrderEnum.valueOf("NEW");
+  private String second_email;
 
   // getters
   @Id
@@ -141,6 +131,9 @@ public class Orders implements Serializable {
     return bill_number;
   }
 
+  @Column(name = "second_email")
+  public String getSecond_email(){ return second_email; }
+
   // setters
 
   public void setId(int id) {
@@ -206,6 +199,8 @@ public class Orders implements Serializable {
   public void setBill_number(String bill_number) {
     this.bill_number = bill_number;
   }
+
+  public void setSecond_email(String second_email) {this.second_email = second_email; }
 
   @Override
   public int hashCode() {
