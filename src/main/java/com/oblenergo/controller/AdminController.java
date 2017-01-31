@@ -135,29 +135,27 @@ public class AdminController {
       return "updateCreateOrders";
     }
 
-    if (orders.getSecond_email().equals(null)){
-      System.out.println("true");
-    }
-
     // it chunk code should moved to some service
     if (orders.getStatus_order().equals(StatusOrderEnum.DONE)
         && (!orderServiceImpl.findOrderById(orders.getId()).getStatus_order().equals(orders.getStatus_order()))) {
       OrderDTO orderDTO = sapServiceImpl.createNewOrder(orders.getCar_number(), orders.getWorkType().getId(),
           Integer.toString(orders.getCount()));
       orders.setBill_number(orderDTO.getOrderNum());
-      if (orders.getSecond_email().equals(null)){
+      if (orders.getSecond_email() == (null)){
         mailServiceImpl.sendMail(orderDTO, orders, sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
                 "Your order is DONE");}
-      else mailServiceImpl.sendMail(orderDTO, orders, orders.getSecond_email(), "Your order is DONE");
+      else{
+        mailServiceImpl.sendMail(orderDTO, orders, orders.getSecond_email(), "Your order is DONE");
+      }
 
     } else if (orders.getStatus_order().equals(StatusOrderEnum.DONE)
         && (orderServiceImpl.findOrderById(orders.getId()).getStatus_order().equals(orders.getStatus_order()))) {
-      if (orders.getSecond_email().equals(null)) {
+      if (orders.getSecond_email() == (null)) {
         mailServiceImpl.sendMailOnlyPermit(orders, sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
                 "Your order is DONE");
       } else mailServiceImpl.sendMailOnlyPermit(orders, orders.getSecond_email(), "Your order is DONE");
     } else if (orders.getStatus_order().equals(StatusOrderEnum.CANCELED)) {
-      if (orders.getSecond_email().equals(null)) {
+      if (orders.getSecond_email() == (null)) {
         mailServiceImpl.sendMailWithoutPDF(sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
                 "Your order is CANCELED");
       } else mailServiceImpl.sendMailWithoutPDF(orders.getSecond_email(),
