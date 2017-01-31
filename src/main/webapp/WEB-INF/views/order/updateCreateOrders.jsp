@@ -21,6 +21,10 @@
           <label>Номер телефону</label>
           <form:input type="text" path="mobile_phone_number" readonly="true" class="form-control" cssErrorClass="" />
 
+
+          <label>Email</label>
+          <form:input type="text" path="second_email" readonly="true" class="form-control" cssErrorClass=""/>
+
           <label>Вид робіт</label>
           <form:select id='typeOfWork' path="workType" items="${typeWorks}" class="form-control" data-placeholder="work"
             itemLabel="name" itemValue="id" readonly="true" />
@@ -38,8 +42,7 @@
           <form:errors path="car_model" class="help-block with-errors" cssErrorClass="" />
 
           <label>Номер авто</label>
-          <form:input required="required" id="" path="car_number" class="form-control" cssErrorClass="error form-control"
-          />
+          <form:input required="required" id="" path="car_number" class="form-control" cssErrorClass="error form-control"/>
           <form:errors path="car_number" class="help-block with-errors" cssErrorClass="" />
           <!-- 	 data of orders  -->
           <input id="timeOrder" type="hidden">
