@@ -103,11 +103,28 @@ function getEndTime(timeString) {
   var timeWorkExecution = $("#timeOrder").val();
   var countOrder = $("#countOrders").val();
   
-  var minuteExecution = ((hours * 60) + (timeWorkExecution * countOrder));
+  var minuteExecution = (((hours * 60) + (timeWorkExecution * countOrder)));
+    
+  var execCheck = minuteExecution/60;
+  var str = execCheck.toString();
+  
+  if( str.length >= 3 && str[3] == 5){
+	  
+	  if(minutes == 30){
+		  minuteExecution += 30;
+		  minutes = "00";
+	  }else{
+		  minutes = "30"
+		  minuteExecution -= 30;
+	  }  
+  }
+  
   var hourEndExec = minuteExecution / 60;
 
   var hourString = hourEndExec.toString();
-
+  
+  console.log(minutes);
+  
   var timeEnd = hourString.concat(':').concat(minutes).concat(':').concat(
     seconds);
   return timeEnd;
