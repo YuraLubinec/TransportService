@@ -21,13 +21,10 @@ public class MailServiceImpl implements MailService {
   private static final Logger LOGGER = Logger.getLogger(MailServiceImpl.class);
 
   @Autowired
-  SapServiceImpl sapServiceImpl;
+  private SapServiceImpl sapServiceImpl;
 
   @Autowired
-  ItextServiceImpl itextServiceImpl;
-
-  @Autowired
-  ApplicationContext appContext;
+  private ItextServiceImpl itextServiceImpl;
 
   @Autowired
   private MimeMessage mimeMessage;

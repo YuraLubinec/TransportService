@@ -37,7 +37,6 @@ public class SapClient extends WebServiceGatewaySupport {
   private static final Logger LOGGER = Logger.getLogger(SapClient.class);
 
   private static final String EMPTY_FIELD = "";
-  private static final String ONLY_COMMUNIC_REQUIRED_VALUE = "X";
   
   @Autowired
   private ObjectFactory of;
@@ -59,7 +58,7 @@ public class SapClient extends WebServiceGatewaySupport {
     request.setJob(EMPTY_FIELD);
     request.setOrgtxt(EMPTY_FIELD);
     request.setOrgUnit(EMPTY_FIELD);
-    request.setCheckCommunities(ONLY_COMMUNIC_REQUIRED_VALUE);
+    request.setCheckCommunities(EMPTY_FIELD);
     request.setEmployeeId(tabNumber);
     request.setOutTab(of.createTableOfZpernDebitor());
     ZsearchPersonResponse response = (ZsearchPersonResponse) getWebServiceTemplate().marshalSendAndReceive(request);
@@ -106,8 +105,8 @@ public class SapClient extends WebServiceGatewaySupport {
    * @return ZsdOrderAddPosResponse object
    */
   private ZsdOrderAddPosResponse getOrderAddPosResponse(String orderNum, String itemNum, String itemCount) {
+   
     ZsdOrderAddPos request = of.createZsdOrderAddPos();
-
     request.setOrderNum(orderNum);
     request.setItemNum(itemNum);
     request.setItemCnt(itemCount);
@@ -139,6 +138,7 @@ public class SapClient extends WebServiceGatewaySupport {
    * @return ZsdBillPrintResponse object
    */
   private ZsdBillPrintResponse getZsdBillPrintResponse(String billNumber) {
+   
     ZsdBillPrint request = of.createZsdBillPrint();
     request.setBillNumber(billNumber);
     return (ZsdBillPrintResponse) getWebServiceTemplate().marshalSendAndReceive(request);
@@ -148,8 +148,7 @@ public class SapClient extends WebServiceGatewaySupport {
    * 
    * Returns full name of an employee
    *
-   * @param time-board
-   *          number of an employee
+   * @param time-board number of an employee
    * @return String with employee`s full name or null if there is no employee
    * with such time-board number
    */
