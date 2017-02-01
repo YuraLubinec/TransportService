@@ -36,7 +36,7 @@
               <option>4</option>
             </form:select>
           </div>
- 
+
           <input id="idFromSelect" type="hidden">
           <input id="nameFromSelect" type="hidden">
           <input id="timeFromSelect" type="hidden" value='30'>
@@ -78,44 +78,49 @@
             <form:errors path="date" class="help-block with-errors" cssErrorClass="" />
           </div>
 
+
+          <label> Виберіть період надання послуги</label>
+
+          <div class="col-md-12">
+            <div class="containSlider">
+              <div id="range"></div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <br>
+
+          <label class="col-md-6 no-padding-left">Початок</label>
+          <label class="col-md-6">Кінець</label>
+
+          <div class="col-md-6 no-padding">
+            <form:input id="startTime" required="required" path="time" class="form-control col-md-6 " placeholder="початок"
+              readonly="true" cssErrorClass="error form-control" />
+            <form:errors path="time" class="help-block with-errors" cssErrorClass="" />
+          </div>
+
+          <div class="col-md-6 no-padding-right">
+            <form:input id="endTime" required="required" path="time_end" class="col-md-6 form-control" placeholder="кінець"
+              readonly="true" cssErrorClass="error form-control" />
+            <form:errors path="time_end" class="help-block with-errors" cssErrorClass="" />
+          </div>
+
           <label>Мобільний номер</label>
           <form:input id="mobile_phone_number" required="required" path="mobile_phone_number" class="form-control orderInput"
             placeholder="+38011111111" cssErrorClass="error form-control" />
           <form:errors path="mobile_phone_number" class="help-block with-errors" cssErrorClass="" />
 
           <label>Якщо у вас немає email адреси, вкажіть будь ласка адресу, на яку має прийти сповіщення про підтвердження замовлення</label>
-          <form:input id="second_email" path="second_email" class="form-control orderInput" cssErrorClass="error form-control"/>
+          <form:input id="second_email" path="second_email" class="form-control orderInput" placeholder="__.__@oe.if.ua"
+            cssErrorClass="error form-control" />
           <form:errors path="second_email" class="help-block with-errors" cssErrorClass="" />
 
           <br>
 
-          <label> Виберіть період надання послуги</label>
-
-          <div class = "col-md-12">
-	          <div class="containSlider">
-	            <div id="range"></div>
-	          </div>
-          </div>
-          <br>
-		<br>
-          <label class="col-md-6 no-padding-left">Початок</label>
-          <label class="col-md-6">Кінець</label>
-
-          <div class="col-md-6 no-padding">
-            <form:input id="startTime" required="required" path="time" class="form-control col-md-6 " placeholder="start" readonly="true"
-              cssErrorClass="error form-control" />
-            <form:errors path="time" class="help-block with-errors" cssErrorClass="" />
-          </div>
-
-          <div class="col-md-6 no-padding-right">
-            <form:input id="endTime" required="required" path="time_end" class="col-md-6 form-control" placeholder="end" readonly="true"
-              cssErrorClass="error form-control" />
-            <form:errors path="time_end" class="help-block with-errors" cssErrorClass="" />
-          </div>
           <div class="">
             <button id="" type="submit" class="btn btn-success paymentApprove form-control pull-down">Замовити
-		      <span class="glyphicon glyphicon-ok"></span>
-		      </button>
+          <span class="glyphicon glyphicon-ok"></span>
+          </button>
           </div>
 
         </form:form>

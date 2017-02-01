@@ -1,5 +1,24 @@
 package com.oblenergo.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import com.oblenergo.DTO.OrderDTO;
 import com.oblenergo.DTO.TimeDTO;
 import com.oblenergo.DTO.WorkTypeDTO;
@@ -9,19 +28,12 @@ import com.oblenergo.enums.StatusOrderEnum;
 import com.oblenergo.model.Car;
 import com.oblenergo.model.Orders;
 import com.oblenergo.model.WorkType;
-import com.oblenergo.service.*;
+import com.oblenergo.service.CarService;
+import com.oblenergo.service.MailService;
+import com.oblenergo.service.OrderService;
+import com.oblenergo.service.SapService;
+import com.oblenergo.service.WorkTypeService;
 import com.oblenergo.validator.WorkTypeValidator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -141,10 +153,10 @@ public class AdminController {
       OrderDTO orderDTO = sapServiceImpl.createNewOrder(orders.getCar_number(), orders.getWorkType().getId(),
           Integer.toString(orders.getCount()));
       orders.setBill_number(orderDTO.getOrderNum());
-      if (orders.getSecond_email() == (null)){
+      if (orders.getSecond_email().equals("")) {
         mailServiceImpl.sendMail(orderDTO, orders, sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
-                "Your order is DONE");}
-      else{
+            "Your order is DONE");
+      } else {
         mailServiceImpl.sendMail(orderDTO, orders, orders.getSecond_email(), "Your order is DONE");
       }
 
@@ -152,14 +164,15 @@ public class AdminController {
         && (orderServiceImpl.findOrderById(orders.getId()).getStatus_order().equals(orders.getStatus_order()))) {
       if (orders.getSecond_email() == (null)) {
         mailServiceImpl.sendMailOnlyPermit(orders, sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
-                "Your order is DONE");
-      } else mailServiceImpl.sendMailOnlyPermit(orders, orders.getSecond_email(), "Your order is DONE");
+            "Your order is DONE");
+      } else
+        mailServiceImpl.sendMailOnlyPermit(orders, orders.getSecond_email(), "Your order is DONE");
     } else if (orders.getStatus_order().equals(StatusOrderEnum.CANCELED)) {
       if (orders.getSecond_email() == (null)) {
         mailServiceImpl.sendMailWithoutPDF(sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
-                "Your order is CANCELED");
-      } else mailServiceImpl.sendMailWithoutPDF(orders.getSecond_email(),
-              "Your order is CANCELED");
+            "Your order is CANCELED");
+      } else
+        mailServiceImpl.sendMailWithoutPDF(orders.getSecond_email(), "Your order is CANCELED");
     }
     orderServiceImpl.update(orders);
     return "redirect:/admin/order";
