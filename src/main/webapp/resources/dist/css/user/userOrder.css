@@ -23,7 +23,13 @@ body {
 .form-control {
 	background-color: rgba(255, 255, 255, 0.6);
    	color: #000000;
-	border: none;
+	  border: none;
+}
+
+.form-inline .input-group>.form-control {
+	  border: 1px solid;
+	  border-color: #ccc;
+    border-radius: 0px 5px 5px 0px
 }
 
 table {

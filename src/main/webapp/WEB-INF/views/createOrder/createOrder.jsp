@@ -20,23 +20,28 @@
       <div class="col-md-4 col-md-offset-4">
 
         <form:form action="" method="POST" modelAttribute="orders" class="form-group" id="orderForm">
-
-          <label class="col-md-12 no-padding-left">Вид робіт</label>
-          <div class="col-md-9 no-padding">
-            <form:select id="typeOfWork" path="workType" items="${workTypeFromSap}" class='form-control orderInput' data-placeholder="work"
-              itemLabel="name" itemValue="id" cssErrorClass="error form-control" />
-            <form:errors path="workType" class="help-block with-errors" cssErrorClass="" />
+          <div class = "form-inline col-lg-12 no-padding" >
+	          <div class="col-md-9 no-padding form-group">
+	          <label class="col-md-9 no-padding-left form-group">Вид робіт</label>
+	          <div class = "input-group"><span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-cog"></span></span>
+	            <form:select id="typeOfWork" path="workType" items="${workTypeFromSap}" class="form-control orderInput" data-placeholder="work"
+	              itemLabel="name" itemValue="id" cssErrorClass="error form-control" />
+	            <form:errors path="workType" class="help-block with-errors" cssErrorClass="" />
+	            </div>
+	          </div>
+	<!--           <div class="col-md-2 bold-padding">Кількість:</div> -->
+	          <div class="col-md-3 no-padding form-group">
+	          <label class="col-md-3 form-group">Кількість</label>
+	             <div class = "input-group"><span class="input-group-addon"><span class = "glyphicon glyphicon-minus"></span></span>
+	            <form:select id="countOrder" path="count" class="form-control orderInput">
+	              <option>&emsp;1&emsp;</option>
+	              <option>&emsp;2&emsp;</option>
+	              <option>&emsp;3&emsp;</option>
+	              <option>&emsp;4&emsp;</option>
+	            </form:select>
+	          </div>
+	          </div>
           </div>
-          <div class="col-md-2 bold-padding">Кількість:</div>
-          <div class="col-md-1 no-padding-right">
-            <form:select id="countOrder" path="count" class="no-padding option-center form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </form:select>
-          </div>
-
           <input id="idFromSelect" type="hidden">
           <input id="nameFromSelect" type="hidden">
           <input id="timeFromSelect" type="hidden" value='30'>
@@ -89,22 +94,23 @@
           <br>
           <br>
           <br>
-
-          <label class="col-md-6 no-padding-left">Початок</label>
-          <label class="col-md-6">Кінець</label>
-
-          <div class="col-md-6 no-padding">
-            <form:input id="startTime" required="required" path="time" class="form-control col-md-6 " placeholder="початок"
+        <div class = "form-inline no-padding col-md-12">
+          <div class="col-md-6 form-group no-padding-left">
+            <div class="input-group"> <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-time"></span></span>
+            <form:input id="startTime" required="required" path="time" class="form-control" placeholder="початок"
               readonly="true" cssErrorClass="error form-control" />
             <form:errors path="time" class="help-block with-errors" cssErrorClass="" />
+            </div>
           </div>
 
-          <div class="col-md-6 no-padding-right">
-            <form:input id="endTime" required="required" path="time_end" class="col-md-6 form-control" placeholder="кінець"
+          <div class="col-md-6 form-group no-padding">
+            <div class="input-group"> <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-time"></span></span>
+            <form:input id="endTime" required="required" path="time_end" class="form-control" placeholder="кінець"
               readonly="true" cssErrorClass="error form-control" />
             <form:errors path="time_end" class="help-block with-errors" cssErrorClass="" />
+            </div>
           </div>
-
+        </div>
           <label>Мобільний номер</label>
           <form:input id="mobile_phone_number" required="required" path="mobile_phone_number" class="form-control orderInput"
             placeholder="+38011111111" cssErrorClass="error form-control" />
