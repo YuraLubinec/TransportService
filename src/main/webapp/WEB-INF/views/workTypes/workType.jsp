@@ -28,7 +28,7 @@
                 <td class="no-padding">
                 <c:choose>
 	                <c:when test="${workType.enabled}">
-	                	<input type="checkbox" checked data-toggle="toggle" data-on="вкллючено" data-off="виключено" data-onstyle="success" data-offstyle="danger">
+	                	<input type="checkbox" checked data-toggle="toggle" data-on="включено" data-off="виключено" data-onstyle="success" data-offstyle="danger">
 	                </c:when>
 	                <c:otherwise>
 	                	<input type="checkbox" data-toggle="toggle" data-on="вкллючено" data-off="виключено" data-onstyle="success" data-offstyle="danger">

@@ -29,7 +29,6 @@
 	            <form:errors path="workType" class="help-block with-errors" cssErrorClass="" />
 	            </div>
 	          </div>
-	<!--           <div class="col-md-2 bold-padding">Кількість:</div> -->
 	          <div class="col-md-3 no-padding form-group">
 	          <label class="col-md-3 form-group">Кількість</label>
 	             <div class = "input-group"><span class="input-group-addon"><span class = "glyphicon glyphicon-minus"></span></span>
