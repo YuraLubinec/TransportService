@@ -30,13 +30,13 @@
 	            </div>
 	          </div>
 	          <div class="col-md-3 no-padding form-group">
-	          <label class="col-md-3 form-group">Кількість</label>
+	          <label class="col-md-12 form-group">Кількість</label>
 	             <div class = "input-group"><span class="input-group-addon"><span class = "glyphicon glyphicon-minus"></span></span>
 	            <form:select id="countOrder" path="count" class="form-control orderInput">
-	              <option>&emsp;1&emsp;</option>
-	              <option>&emsp;2&emsp;</option>
-	              <option>&emsp;3&emsp;</option>
-	              <option>&emsp;4&emsp;</option>
+	              <option>1&emsp;&emsp;</option>
+	              <option>2&emsp;&emsp;</option>
+	              <option>3&emsp;&emsp;</option>
+	              <option>4&emsp;&emsp;</option>
 	            </form:select>
 	          </div>
 	          </div>
