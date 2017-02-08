@@ -54,6 +54,7 @@
           </tbody>
         </table>
       </div>
+      <a class="btn btn-primary" href=<c:url value="/cashier/cashierPaid" />>Оплачені замовлення</a>
     </div>
   </div>
 </div>

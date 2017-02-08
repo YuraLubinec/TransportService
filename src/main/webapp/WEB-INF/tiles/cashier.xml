@@ -8,4 +8,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/cashier/cashier.jsp" />
 	</definition>
 
+	<definition name="cashierPaid" extends="DefaultTemplate">
+		<put-attribute name="title" value="Cashier" />
+		<put-attribute name="body" value="/WEB-INF/views/cashier/cashierPaid.jsp" />
+	</definition>
+
 </tiles-definitions>

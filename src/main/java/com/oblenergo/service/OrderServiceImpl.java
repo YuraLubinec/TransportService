@@ -337,4 +337,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
   }
+
+  @Transactional
+  @Override
+  public List<Orders> findAllPaid(){
+    try{
+      return  dao.findAllPaidOrders();
+    } catch (DataAccessException dae){
+      LOGGER.error("Unable to find paid orders");
+      throw  dae;
+    }
+  }
 }

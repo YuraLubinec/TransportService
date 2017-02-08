@@ -32,6 +32,8 @@ public interface OrderService {
 
   List<Orders> findAllConfirm();
 
+  List<Orders> findAllPaid();
+
   String[][] getAllTimeOfOrders(List<Orders> orders);
 
 }

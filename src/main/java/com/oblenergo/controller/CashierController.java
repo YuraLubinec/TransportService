@@ -1,5 +1,10 @@
 package com.oblenergo.controller;
 
+import com.oblenergo.enums.StatusOrderEnum;
+import com.oblenergo.model.Notification;
+import com.oblenergo.model.OrderMessage;
+import com.oblenergo.model.Orders;
+import com.oblenergo.service.OrderService;
 import com.oblenergo.service.SapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import com.oblenergo.enums.StatusOrderEnum;
-import com.oblenergo.model.Notification;
-import com.oblenergo.model.OrderMessage;
-import com.oblenergo.model.Orders;
-import com.oblenergo.service.OrderService;
 
 @Controller
 @RequestMapping("/cashier")
@@ -38,6 +37,13 @@ public class CashierController {
 		model.addAttribute(ORDER_LIST, orderServiceImpl.findAllConfirm());
 		model.addAttribute(WORKTYPE_FROM_SAP, sapServiceImpl.getAllWorkTypes());
 		return "cashier";
+	}
+
+	@RequestMapping(value = "/cashierPaid", method = RequestMethod.GET)
+	public String getAllPaidOrders(Model model){
+		model.addAttribute(ORDER_LIST, orderServiceImpl.findAllPaid());
+		model.addAttribute(WORKTYPE_FROM_SAP, sapServiceImpl.getAllWorkTypes());
+		return "cashierPaid";
 	}
 
 	@RequestMapping(value = "/approvePayment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -20,4 +20,6 @@ public interface OrderDao {
 
 	List<Orders> findAllConfirmOrders();
 
+	List<Orders> findAllPaidOrders();
+
 }
