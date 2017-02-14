@@ -34,6 +34,9 @@ public class AdminController {
   private static final String ORDER = "orders";
   private static final String STATUS_ORDER_ENUM = "items";
   private static final String WORKTYPE_FROM_SAP = "workTypeFromSap";
+  
+  private static final String ORDER_CONFIRMED = "Ваше замовлення підтверджене";
+  private static final String ORDER_CENCELED = "Ваше замовлення скасоване";
 
   @Autowired
   private MailService mailServiceImpl;
@@ -135,7 +138,7 @@ public class AdminController {
       return "updateCreateOrders";
     }
 
-    // it chunk code should moved to some service
+    // this piece of code should moved to some service
     if (orders.getStatus_order().equals(StatusOrderEnum.DONE)
         && (!orderServiceImpl.findOrderById(orders.getId()).getStatus_order().equals(orders.getStatus_order()))) {
       OrderDTO orderDTO = sapServiceImpl.createNewOrder(orders.getCar_number(), orders.getWorkType().getId(),
@@ -143,24 +146,24 @@ public class AdminController {
       orders.setBill_number(orderDTO.getOrderNum());
       if (orders.getSecond_email().equals("")) {
         mailServiceImpl.sendMail(orderDTO, orders, sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
-            "Your order is DONE");
+            ORDER_CONFIRMED);
       } else {
-        mailServiceImpl.sendMail(orderDTO, orders, orders.getSecond_email(), "Your order is DONE");
+        mailServiceImpl.sendMail(orderDTO, orders, orders.getSecond_email(), ORDER_CONFIRMED);
       }
 
     } else if (orders.getStatus_order().equals(StatusOrderEnum.DONE)
         && (orderServiceImpl.findOrderById(orders.getId()).getStatus_order().equals(orders.getStatus_order()))) {
       if (orders.getSecond_email().equals("")) {
         mailServiceImpl.sendMailOnlyPermit(orders, sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
-            "Your order is DONE");
+            ORDER_CONFIRMED);
       } else
-        mailServiceImpl.sendMailOnlyPermit(orders, orders.getSecond_email(), "Your order is DONE");
+        mailServiceImpl.sendMailOnlyPermit(orders, orders.getSecond_email(), ORDER_CONFIRMED);
     } else if (orders.getStatus_order().equals(StatusOrderEnum.CANCELED)) {
       if (orders.getSecond_email().equals("")) {
         mailServiceImpl.sendMailWithoutPDF(sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
-            "Your order is CANCELED");
+            ORDER_CENCELED);
       } else
-        mailServiceImpl.sendMailWithoutPDF(orders.getSecond_email(), "Your order is CANCELED");
+        mailServiceImpl.sendMailWithoutPDF(orders.getSecond_email(), ORDER_CENCELED);
     }
     orderServiceImpl.update(orders);
     return "redirect:/admin/order";

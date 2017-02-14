@@ -30,8 +30,9 @@
 	            </div>
 	          </div>
 	          <div class="col-md-3 no-padding form-group">
-	          <label class="col-md-12 form-group">Кількість</label>
-	             <div class = "input-group"><span class="input-group-addon"><span class = "glyphicon glyphicon-minus"></span></span>
+	          
+	          <label class="col-md-12 no-padding-left form-group">Кількість</label>
+	             <div class = "input-group col-md-12"><span class="input-group-addon"><span class = "glyphicon glyphicon-minus"></span></span>
 	            <form:select id="countOrder" path="count" class="form-control orderInput">
 	              <option>1&emsp;&emsp;</option>
 	              <option>2&emsp;&emsp;</option>
@@ -39,6 +40,7 @@
 	              <option>4&emsp;&emsp;</option>
 	            </form:select>
 	          </div>
+	     
 	          </div>
           </div>
           <input id="idFromSelect" type="hidden">
@@ -78,7 +80,7 @@
           <label>Дата</label>
           <div id="datePicker">
             <form:input id="dpicker" required="required" path="date" class="date start dateChange form-control " placeholder="Виберіть дату"
-              cssErrorClass="date start dateChange error form-control" />
+              cssErrorClass="date start dateChange error form-control" readonly="true"/>
             <form:errors path="date" class="help-block with-errors" cssErrorClass="" />
           </div>
 
@@ -95,15 +97,15 @@
           <br>
         <div class = "form-inline no-padding col-md-12">
           <div class="col-md-6 form-group no-padding-left">
-            <div class="input-group"> <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-time"></span></span>
+            <div class="input-group col-md-12 "> <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-time"></span></span>
             <form:input id="startTime" required="required" path="time" class="form-control" placeholder="початок"
               readonly="true" cssErrorClass="error form-control" />
             <form:errors path="time" class="help-block with-errors" cssErrorClass="" />
             </div>
           </div>
 
-          <div class="col-md-6 form-group no-padding">
-            <div class="input-group"> <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-time"></span></span>
+          <div class="col-md-6 form-group no-padding text-left">
+            <div class="input-group col-md-12 "> <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-time"></span></span>
             <form:input id="endTime" required="required" path="time_end" class="form-control" placeholder="кінець"
               readonly="true" cssErrorClass="error form-control" />
             <form:errors path="time_end" class="help-block with-errors" cssErrorClass="" />

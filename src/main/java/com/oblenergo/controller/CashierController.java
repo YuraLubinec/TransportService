@@ -24,32 +24,28 @@ public class CashierController {
 
 	private static final String ORDER_LIST = "orders";
 
-	private static final String WORKTYPE_FROM_SAP = "workTypeFromSap";
-
 	@Autowired
 	private OrderService orderServiceImpl;
-
-	@Autowired
-	private SapService sapServiceImpl;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getCashierPage(Model model) {
-		model.addAttribute(ORDER_LIST, orderServiceImpl.findAllConfirm());
-		model.addAttribute(WORKTYPE_FROM_SAP, sapServiceImpl.getAllWorkTypes());
+		
+	  model.addAttribute(ORDER_LIST, orderServiceImpl.findAllConfirm());
 		return "cashier";
 	}
 
 	@RequestMapping(value = "/cashierPaid", method = RequestMethod.GET)
 	public String getAllPaidOrders(Model model){
-		model.addAttribute(ORDER_LIST, orderServiceImpl.findAllPaid());
-		model.addAttribute(WORKTYPE_FROM_SAP, sapServiceImpl.getAllWorkTypes());
+		
+	  model.addAttribute(ORDER_LIST, orderServiceImpl.findAllPaid());
 		return "cashierPaid";
 	}
 
 	@RequestMapping(value = "/approvePayment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void approvePayment(@RequestBody int id) {
-		Orders order = orderServiceImpl.findOrderById(id);
+		
+	  Orders order = orderServiceImpl.findOrderById(id);
 		order.setStatus_order(StatusOrderEnum.valueOf("PAID"));
 		orderServiceImpl.update(order);
 	}

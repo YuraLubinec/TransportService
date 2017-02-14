@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.servlet.ServletContext;
 
 import org.apache.log4j.Logger;
+import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,13 +27,18 @@ import com.oblenergo.model.Orders;
 public class ItextServiceImpl implements ItextService {
 
   Logger LOGGER = Logger.getLogger(ItextServiceImpl.class);
+  
+  private static final String SUBSCRIPTION_ID="Перепустка для в'їзду на територію ";
+  private static final String CUSTOMER="Замовник : ";
+  private static final String TYPE_OF_ORDER="Вид послуги : ";
+  private static final String CAR_NUM="Державний реєстраційний номер : ";
+  private static final String DATE="Дата виконання послуги : ";
+  private static final String TIME_START="Початок : ";
+  private static final String TIME_END="Кінець : ";
 
   @Autowired
-  SapServiceImpl sapServiceImpl;
-
-  @Autowired
-  ServletContext context;
-
+  private ServletContext context;
+  
   /** This method get font(localization words in document)
    * 
    * @return Font */
@@ -98,34 +104,34 @@ public class ItextServiceImpl implements ItextService {
     PdfPCell cell;
 
     cell = new PdfPCell(
-        new Phrase("Перепустка для в`їзду на територію " + order.getId(), getFont()));
+        new Phrase(SUBSCRIPTION_ID+ order.getId(), getFont()));
     cell.setColspan(2);
     cell.setBorderColor(BaseColor.WHITE);
     table.addCell(cell);
 
-    cell = new PdfPCell(new Phrase("Замовник : ", getFont()));
+    cell = new PdfPCell(new Phrase(CUSTOMER, getFont()));
 
     table.addCell(cell);
 
     table.addCell(new Phrase(order.getCustomer(), getFont()));
 
-    cell = new PdfPCell(new Phrase("Вид послуги : ", getFont()));
+    cell = new PdfPCell(new Phrase(TYPE_OF_ORDER, getFont()));
     table.addCell(cell);
     table.addCell(new Phrase(order.getWorkType().getName(), getFont()));
 
-    cell = new PdfPCell(new Phrase("Державний реєстраційни номер : ", getFont()));
+    cell = new PdfPCell(new Phrase(CAR_NUM, getFont()));
     table.addCell(cell);
     table.addCell(new Phrase(order.getCar_number().toString(), getFont()));
 
-    cell = new PdfPCell(new Phrase("Дата виконання послуги : ", getFont()));
+    cell = new PdfPCell(new Phrase(DATE, getFont()));
     table.addCell(cell);
     table.addCell(new Phrase(order.getDate(), getFont()));
 
-    cell = new PdfPCell(new Phrase("Початок виконання послуги : ", getFont()));
+    cell = new PdfPCell(new Phrase(TIME_START, getFont()));
     table.addCell(cell);
     table.addCell(new Phrase(order.getTime(), getFont()));
 
-    cell = new PdfPCell(new Phrase("Кінець виконання послуги : ", getFont()));
+    cell = new PdfPCell(new Phrase(TIME_END, getFont()));
     table.addCell(cell);
 
     table.addCell(new Phrase(order.getTime_end(), getFont()));
