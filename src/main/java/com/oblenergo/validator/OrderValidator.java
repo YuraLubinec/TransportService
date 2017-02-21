@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -43,7 +44,7 @@ public class OrderValidator implements Validator {
         errors.rejectValue("user_tab", "Must.be.number");
       } else {
         String fullName = sapServiceImpl.getFullNameFromSap(tabNumber);
-        if (fullName == null) {
+        if (fullName == null || StringUtils.isBlank(fullName)) {
           errors.rejectValue("user_tab", "No.such.tabnamber");
         }
       }
