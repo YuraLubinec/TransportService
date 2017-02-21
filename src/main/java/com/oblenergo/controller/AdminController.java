@@ -142,7 +142,7 @@ public class AdminController {
     if (orders.getStatus_order().equals(StatusOrderEnum.DONE)
         && (!orderServiceImpl.findOrderById(orders.getId()).getStatus_order().equals(orders.getStatus_order()))) {
       OrderDTO orderDTO = sapServiceImpl.createNewOrder(orders.getCar_number(), orders.getWorkType().getId(),
-          Integer.toString(orders.getCount()));
+          Integer.toString(orders.getCount()), orders.getUser_tab());
       orders.setBill_number(orderDTO.getOrderNum());
       if (orders.getSecond_email().equals("")) {
         mailServiceImpl.sendMail(orderDTO, orders, sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),

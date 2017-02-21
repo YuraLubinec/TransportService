@@ -43,9 +43,8 @@ public class SapClientConfiguration {
   
   @Bean 
   public SaajSoapMessageFactory saajSoapMessageFactory(){
-    SaajSoapMessageFactory mf = new SaajSoapMessageFactory();
 
-    return mf;
+    return new SaajSoapMessageFactory();
   }
 
   @Bean

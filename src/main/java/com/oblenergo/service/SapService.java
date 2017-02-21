@@ -13,7 +13,7 @@ public interface SapService {
 
   List<WorkTypeDTO> getAllWorkTypes();
 
-  OrderDTO createNewOrder(String carNum, String itemNum, String itemCount);
+  OrderDTO createNewOrder(String carNum, String itemNum, String itemCount, String tab_number);
 
   byte[] getBillPDF(String billNum);
   

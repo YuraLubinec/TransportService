@@ -85,12 +85,13 @@ public class SapClient extends WebServiceGatewaySupport {
    * @param registration number of a car
    * @return ZsdOrderCreateResponse object
    */
-  private ZsdOrderCreateResponse getZsdOrderCreateResponse(String carNum) {
+  private ZsdOrderCreateResponse getZsdOrderCreateResponse(String carNum, String performer_id) {
 
     ZsdOrderCreate request = of.createZsdOrderCreate();
     request.setOrderClient("8000000001");
     request.setOrderType("SMIT");
     request.setOrderDoc(carNum);
+    request.setOrderPernr(performer_id);
     request.setMesstab(of.createTableOfBdcmsgcoll());
     return (ZsdOrderCreateResponse) getWebServiceTemplate().marshalSendAndReceive(request);
   }
@@ -217,9 +218,9 @@ public class SapClient extends WebServiceGatewaySupport {
    * @param amount of work to do 
    * @return OrderDTO object with order info  
    */
-  public OrderDTO getOrder(String carNum, String itemNum, String itemCount) {
+  public OrderDTO getOrder(String carNum, String itemNum, String itemCount, String performer_id) {
 
-    ZsdOrderCreateResponse response = getZsdOrderCreateResponse(carNum);
+    ZsdOrderCreateResponse response = getZsdOrderCreateResponse(carNum, performer_id);
     OrderDTO order = new OrderDTO();
     int respCode = response.getSubrc();
     if (respCode == 0) {

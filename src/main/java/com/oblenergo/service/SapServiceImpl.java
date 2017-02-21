@@ -37,9 +37,9 @@ public class SapServiceImpl implements SapService {
   }
 
   @Override
-  public OrderDTO createNewOrder(String carNum, String itemNum, String itemCount) {
+  public OrderDTO createNewOrder(String carNum, String itemNum, String itemCount, String user_tab) {
 
-    return sapClient.getOrder(carNum, itemNum, itemCount);
+    return sapClient.getOrder(carNum, itemNum, itemCount, user_tab);
   }
 
   @Override

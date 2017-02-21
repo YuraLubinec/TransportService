@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.oblenergo.DTO.OrderDTO;
 import com.oblenergo.DTO.WorkTypeDTO;
 import com.oblenergo.editor.CarEditor;
 import com.oblenergo.editor.ServiceEditor;
@@ -70,6 +71,7 @@ public class UserOrderController {
 
   @RequestMapping(method = RequestMethod.GET)
   public String getAllType(Model model) {
+
     model.addAttribute(WORKTYPE_FROM_SAP, wokrTypeServiceImpl.findAvailableWorkType(sapServiceImpl.getAllWorkTypes()));
     model.addAttribute(ITEMSCAR, carServiceImpl.findAll());
     model.addAttribute(ORDER, new Orders());
