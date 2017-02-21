@@ -54,7 +54,8 @@ select option {
 	    border: none;	
 }
 
-#dpicker:HOVER,select:HOVER, .noUi-handle:HOVER  {
+.dateChange.form-control[readonly], select:HOVER, .noUi-handle:not(:disabled){
 	cursor: pointer;
 }
+
 
