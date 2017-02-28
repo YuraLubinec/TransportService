@@ -16,7 +16,7 @@ $(function() {
 	          previous: "Попередня"
 	        }
 	      },
-	      order: [1, 'asc'],
+	      order: [5, 'desc'],
 	      columnDefs: [{
 	        targets: [2, 3, 4, 6, 8, 10, 11],
 	        orderable: false,
