@@ -35,8 +35,8 @@ public class AdminController {
   private static final String STATUS_ORDER_ENUM = "items";
   private static final String WORKTYPE_FROM_SAP = "workTypeFromSap";
   
-  private static final String ORDER_CONFIRMED = "Ваше замовлення підтверджене";
-  private static final String ORDER_CENCELED = "Ваше замовлення скасоване";
+  private static final String ORDER_CONFIRMED = "\u0412\u0430\u0448\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F \u043F\u0456\u0434\u0442\u0432\u0435\u0440\u0434\u0436\u0435\u043D\u0435";
+  private static final String ORDER_CENCELED = "\u0412\u0430\u0448\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F \u0441\u043A\u0430\u0441\u043E\u0432\u0430\u043D\u0435";
 
   @Autowired
   private MailService mailServiceImpl;
@@ -160,8 +160,7 @@ public class AdminController {
         mailServiceImpl.sendMailOnlyPermit(orders, orders.getSecond_email(), ORDER_CONFIRMED);
     } else if (orders.getStatus_order().equals(StatusOrderEnum.CANCELED)) {
       if (orders.getSecond_email().equals("")) {
-        mailServiceImpl.sendMailWithoutPDF(sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()),
-            ORDER_CENCELED);
+        mailServiceImpl.sendMailWithoutPDF(sapServiceImpl.getUserEmailFromSap(orders.getUser_tab()), ORDER_CENCELED);
       } else
         mailServiceImpl.sendMailWithoutPDF(orders.getSecond_email(), ORDER_CENCELED);
     }
